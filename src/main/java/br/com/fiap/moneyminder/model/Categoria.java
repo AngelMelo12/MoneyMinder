@@ -1,13 +1,23 @@
 package br.com.fiap.moneyminder.model;
 
-import java.util.Random;
 
-public record Categoria(Long id, String nome, String icone) { //record é imutável
-    public Categoria(Long id, String nome, String icone){
-        var key = (id != null) ? id : new Random().nextLong();
-        this.id = key;
-        this.icone = icone;
-        this.nome = nome;
-    }
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Table
+@Data
+public class Categoria {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String nome;
+    private String icone;
+
 
 }
